@@ -38,18 +38,18 @@ get_kernel_sources() {
     # Download sources
     ssh-keygen -F github.com || ssh-keyscan github.com >> /home/vagrant/.ssh/known_hosts
     echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/vagrant/.ssh/config
-    if [ -d "/home/vagrant/p10_kernel_source/arch/arm64/configs" ] 
+    if [ -d "/home/vagrant/android_kernel_lenovo_X705F/arch/arm64/configs" ] 
     then
         echo "Already have the kernel source..." 
     else
-        git clone git@github.com:greipfrut/android_kernel_lenovo_X705F.git
+        git clone https://github.com/greipfrut/android_kernel_lenovo_X705F.git
     fi
 }
 
 do_also_build_wifi() {
     # Let's build the wifi kernel module
-    make O=../out/target/product/$PROJECT/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- KCFLAGS=-mno-android  WLAN_ROOT=/home/vagrant/p10_kernel_source/drivers/staging/prima MODNAME=pronto_wlan CONFIG_PRONTO_WLAN=m -C . M=/home/vagrant/p10_kernel_source/drivers/staging/prima modules
-    make O=../out/target/product/$PROJECT/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- KCFLAGS=-mno-android  WLAN_ROOT=/home/vagrant/p10_kernel_source/drivers/staging/prima MODNAME=pronto_wlan CONFIG_PRONTO_WLAN=m -C . M=/home/vagrant/p10_kernel_source/drivers/staging/prima INSTALL_MOD_PATH=../system INSTALL_MOD_STRIP=1 modules_install
+    make O=../out/target/product/$PROJECT/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- KCFLAGS=-mno-android  WLAN_ROOT=/home/vagrant/android_kernel_lenovo_X705F/drivers/staging/prima MODNAME=pronto_wlan CONFIG_PRONTO_WLAN=m -C . M=/home/vagrant/android_kernel_lenovo_X705F/drivers/staging/prima modules
+    make O=../out/target/product/$PROJECT/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- KCFLAGS=-mno-android  WLAN_ROOT=/home/vagrant/android_kernel_lenovo_X705F/drivers/staging/prima MODNAME=pronto_wlan CONFIG_PRONTO_WLAN=m -C . M=/home/vagrant/android_kernel_lenovo_X705F/drivers/staging/prima INSTALL_MOD_PATH=../system INSTALL_MOD_STRIP=1 modules_install
 }
 
 do_build_kernel() {
@@ -57,7 +57,7 @@ do_build_kernel() {
     source ~/.bashrc
     
     # Copy the SyncronE kernel config into the kernel src
-    SYNCRONE_DEFCONFIG="/home/vagrant/p10_kernel_source/arch/arm64/configs/syncronep10_defconfig"
+    SYNCRONE_DEFCONFIG="/home/vagrant/android_kernel_lenovo_X705F/arch/arm64/configs/syncronep10_defconfig"
     if [ -f "$SYNCRONE_DEFCONFIG" ];
     then
        echo "$SYNCRONE_DEFCONFIG already exists! Removing potentially stale config and copying over new one..."
@@ -66,7 +66,7 @@ do_build_kernel() {
     fi
     cp /vagrant/syncronep10_defconfig $SYNCRONE_DEFCONFIG
     
-    cd /home/vagrant/p10_kernel_source
+    cd /home/vagrant/android_kernel_lenovo_X705F
 
     # Use mrproper to make sure src directory is in good shape and is clean from previous builds
     make -C . O=../out/target/product/$PROJECT/obj/KERNEL_OBJ ARCH=arm64 CROSS_COMPILE=aarch64-linux-android- KCFLAGS=-mno-android mrproper
