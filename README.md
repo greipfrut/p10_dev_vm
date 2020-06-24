@@ -7,7 +7,7 @@ It also includes the standard Ubuntu desktop in case the developer wishes to hav
 
 
 ## macOS/Linux Quick Start: First Time
-1. Download the latest release (v0.1.0 as of June 16 2020) of this repo.
+1. Download the latest [release](https://github.com/greipfrut/p10_dev_vm/releases) (v0.1.0 as of June 16 2020) of this repo.
 1. (Very first time only) Install Vagrant: https://www.vagrantup.com/downloads
 1. Spin up the VM: `vagrant up --provider=virtualbox`
 1. Once you see `Provisioning complete!` at the terminal, you will find the flashable zip (e.g. `update_P10_kernel_Tue_Jun_16_19-14-05_2020.zip`) in this same directory.
@@ -26,7 +26,7 @@ It also includes the standard Ubuntu desktop in case the developer wishes to hav
 1. Spin the VM back up: `vagrant up`
 
 ## Windows Quick Start
-1. Download the latest tag (v0.1.0 as of June 16 2020) of this repo.
+1. Download the latest [release](https://github.com/greipfrut/p10_dev_vm/releases) (v0.1.0 as of June 16 2020) of this repo.
 1. (Very first time only) Install Vagrant and Git for Windows: https://www.vagrantup.com/downloads and https://gitforwindows.org/
 1. Now spin up the VM: `vagrant up --provider=virtualbox`
 1. You should see a lot of automated outputs at the terminal and maybe after 30 minutes or so, you'll see `Provisioning complete!` at the terminal.  Then you will find a flashable zip (e.g. `update_P10_kernel_Tue_Jun_16_19-14-05_2020.zip`) in this same directory.
