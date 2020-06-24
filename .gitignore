@@ -1,0 +1,7 @@
+.vagrant/
+.DS_Store
+version
+AnyKernel3-master/
+*.zip
+*.ko
+*.gz-dtb
